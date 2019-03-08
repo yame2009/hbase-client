@@ -7,19 +7,19 @@
        default-autowire="byName">
 
     <!-- spring使用案例。在项目中的spring中配置这个bean和扫描-->
-    <bean id="hBaseFactoryBean" class="com.byxf.hbase.config.HBaseFactoryBean" init-method="initializeConnections">
+    <bean id="hBaseFactoryBean" class="com.tool.hbase.config.HBaseFactoryBean" init-method="initializeConnections">
         <property name="hbaseConfigs">
             <list>
-                <bean class="com.byxf.hbase.config.HBaseConfig">
-                    <property name="zookeeperQuorum" value="${hbase.hbase.zookeeper.quorum}" />
-					<property name="zookeeperClientPort" value="${hbase.hbase.zookeeper.property.clientPort}" />
-					<property name="zookeeperZnodeParent" value="${hbase.hbase.zookeeper.znode.parent}" />
- 					<property name="threadPoolNum" value="${hbase.hTables.thread.pool.num}" /> 
- 					
- 					<property name="rpcTimeout" value="${hbase.hbase.rpc.timeout}" />
-					<property name="clientRetriesNumber" value="${hbase.hbase.client.retries.number}" />
-					<property name="clientOperationTimeout" value="${hbase.hbase.client.operation.timeout}" />
- 					<property name="clientScannerTimeoutPeriod" value="${hbase.hbase.client.scanner.timeout.period}" /> 
+                <bean class="com.tool.hbase.config.HBaseConfig">
+                    <property name="zookeeperQuorum" value="${hbase.hbase.zookeeper.quorum}"/>
+                    <property name="zookeeperClientPort" value="${hbase.hbase.zookeeper.property.clientPort}"/>
+                    <property name="zookeeperZnodeParent" value="${hbase.hbase.zookeeper.znode.parent}"/>
+                    <property name="threadPoolNum" value="${hbase.hTables.thread.pool.num}"/>
+
+                    <property name="rpcTimeout" value="${hbase.hbase.rpc.timeout}"/>
+                    <property name="clientRetriesNumber" value="${hbase.hbase.client.retries.number}"/>
+                    <property name="clientOperationTimeout" value="${hbase.hbase.client.operation.timeout}"/>
+                    <property name="clientScannerTimeoutPeriod" value="${hbase.hbase.client.scanner.timeout.period}"/>
                 </bean>
             </list>
         </property>

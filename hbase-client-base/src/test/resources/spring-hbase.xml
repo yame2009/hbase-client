@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
 		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd"
-	default-autowire="byName">
+       default-autowire="byName">
 
-	<!-- 与上面的配置等价，下面的更容易理解 ,PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配好多个properties文件 -->
-	<bean id="propertyConfigurer" scope="singleton" class="com.byxf.hbase.config.PropertyPlaceholder">
-		<property name="locations">
-			<array>
-				<value>classpath:*/*.properties</value>
-			</array>
-		</property>
-	</bean>
+    <!-- 与上面的配置等价，下面的更容易理解 ,PropertyPlaceholderConfigurer类中有个locations属性，接收的是一个数组，即我们可以在下面配好多个properties文件 -->
+    <bean id="propertyConfigurer" scope="singleton" class="com.tool.hbase.config.PropertyPlaceholder">
+        <property name="locations">
+            <array>
+                <value>classpath:*/*.properties</value>
+            </array>
+        </property>
+    </bean>
 
-	<!-- <context:property-placeholder location="classpath:properties/*.properties"/> -->
+    <!-- <context:property-placeholder location="classpath:properties/*.properties"/> -->
 
-	<!-- spring使用案例。在项目中的spring中配置这个bean和扫描 -->
-	<bean id="hBaseFactoryBean" class="com.byxf.hbase.config.HBaseFactoryBean" init-method="initializeConnections">
-		<property name="hbaseConfigs">
-			<list>
-				<bean class="com.byxf.hbase.config.HBaseConfig">
-					<property name="zookeeperQuorum" value="${hbase.zookeeper.quorum}" />
-					<property name="zookeeperClientPort" value="${hbase.zookeeper.property.clientPort}" />
-					<property name="zookeeperZnodeParent" value="${hbase.zookeeper.znode.parent}" />
- 					<property name="threadPoolNum" value="${hbase.hTables.thread.pool.num}" /> 
- 					
- 					<property name="rpcTimeout" value="${hbase.rpc.timeout}" />
-					<property name="clientRetriesNumber" value="${hbase.client.retries.number}" />
-					<property name="clientOperationTimeout" value="${hbase.client.operation.timeout}" />
- 					<property name="clientScannerTimeoutPeriod" value="${hbase.client.scanner.timeout.period}" /> 
-				</bean>
-			</list>
-		</property>
-	</bean>
+    <!-- spring使用案例。在项目中的spring中配置这个bean和扫描 -->
+    <bean id="hBaseFactoryBean" class="com.tool.hbase.config.HBaseFactoryBean" init-method="initializeConnections">
+        <property name="hbaseConfigs">
+            <list>
+                <bean class="com.tool.hbase.config.HBaseConfig">
+                    <property name="zookeeperQuorum" value="${hbase.zookeeper.quorum}"/>
+                    <property name="zookeeperClientPort" value="${hbase.zookeeper.property.clientPort}"/>
+                    <property name="zookeeperZnodeParent" value="${hbase.zookeeper.znode.parent}"/>
+                    <property name="threadPoolNum" value="${hbase.hTables.thread.pool.num}"/>
 
-	<context:component-scan base-package="com.byxf.hbase.*" />
+                    <property name="rpcTimeout" value="${hbase.rpc.timeout}"/>
+                    <property name="clientRetriesNumber" value="${hbase.client.retries.number}"/>
+                    <property name="clientOperationTimeout" value="${hbase.client.operation.timeout}"/>
+                    <property name="clientScannerTimeoutPeriod" value="${hbase.client.scanner.timeout.period}"/>
+                </bean>
+            </list>
+        </property>
+    </bean>
+
+    <context:component-scan base-package="com.tool.hbase.*"/>
 
 </beans>

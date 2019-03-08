@@ -8,3 +8,7 @@ out
 output
 build
 log
+*.jar
+*.class
+*/*.class
+hbase-client-base/target/
